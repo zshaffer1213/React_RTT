@@ -1,15 +1,17 @@
 import React from "react"
+import { RoltainerContext } from "../../App"
+export default function TableRow({storeData}) {
+    
+    const { handleEndBtn } = React.useContext(RoltainerContext)
 
-export default function TableRow({name, type, start, end}) {
-
-    const endBtn = <button>End</button>
+    const endBtn = <button onClick={() => handleEndBtn(storeData.id)}>End</button>
 
     return (
          <div className="data-row">
-            <p>{name}</p>
-            <p>{type}</p>
-            <p>{start}</p>
-            <p>{end ? end : endBtn}</p>
+            <p>{storeData.eName}</p>
+            <p>{storeData.rtType}</p>
+            <p>{storeData.startTime}</p>
+            <p>{storeData.end ? endTime : endBtn}</p>
          </div>
     )
 }

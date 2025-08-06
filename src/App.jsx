@@ -3,6 +3,8 @@ import TableHead from "./components/Table/TableHead"
 import TableRow from "./components/Table/TableRow"
 import './index.css'
 import TrackForm from "./components/TrackForm/TrackForm"
+import { db, auth } from "./firebase"
+import { collection, addDoc } from "firebase/firestore"
 
 const RoltainerContext = React.createContext() 
 export {RoltainerContext}

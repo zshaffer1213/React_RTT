@@ -12,14 +12,15 @@ export default function TrackForm() {
     return (
         <form className="tracking-form" onSubmit={() => handleSubmit(event)}>
             <input 
+                name="initials"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Initials"
                 className="form-name"
             />
-            <select>
-                <option value="first">RT Type</option>
+            <select name="rtType">
+                <option value="blank">----------</option>
                 <option value="uboat" >Uboat</option>
                 <option value="totes">TOTES</option>
                 <option value="hba">HBA</option>

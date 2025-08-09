@@ -44,7 +44,7 @@ export default function MainPage() {
                     return <TableRow key={arrItem.id} storeData={arrItem} />
                 })}
             </RoltainerContext.Provider>
-            {!currentUser && <Navigate to='.' replace />}
+            {!currentUser && <Navigate to='/' replace />}
         </>
     )
 }

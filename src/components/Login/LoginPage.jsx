@@ -4,31 +4,33 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword
 } from 'firebase/auth'
-import { Navigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
+import { useAuth } from "../../Context/AuthContext"
 
 
 export default function LoginPage() {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [isLogin, setIsLogin] = React.useState(true)
+    const navigate = useNavigate()
+    const {currentUser} = useAuth()
 
     async function handleSubmit(e) {
         e.preventDefault()
-
         try {
             if (isLogin) {
                 const userCred = await signInWithEmailAndPassword(auth, email, password)
-                console.log("User logged in!", userCred.user.uid)
+                console.log("User logged in!", userCred.user.email)
+                navigate('/', {replace: true})
             } else {
                 const userCred = await createUserWithEmailAndPassword(auth, email, password)
-                console.log("User registered!", userCred.user.uid)
+                console.log("User registered!", userCred.user.email)
             }
         }catch (err) {
             console.error(err.message)
         }finally {
             setEmail('')
             setPassword('')
-            // if (isLogin )
         }
     }
     
@@ -59,6 +61,7 @@ export default function LoginPage() {
                     {isLogin ? "Need an account?" : "Already have on?"}
                 </p>
             </form>
+            {currentUser && <Navigate to='/dashboard'/>}
         </div>
     )
     

@@ -4,7 +4,8 @@ import { getAuth, createUserWithEmailAndPassword, connectAuthEmulator } from "fi
 import { 
     getFirestore,
     doc,
-    setDoc
+    setDoc,
+    connectFirestoreEmulator
 
  } from "firebase/firestore";
 
@@ -26,5 +27,6 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app)
 const auth = getAuth(app)
 connectAuthEmulator(auth, "http://localhost:9099")
+connectFirestoreEmulator(db, '127.0.0.1', 8080);
 
 export { db, auth }
